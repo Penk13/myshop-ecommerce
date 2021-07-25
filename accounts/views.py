@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model
 from django.http import HttpResponse
+from django.contrib.auth.models import Group
 
 from .forms import (
     RegisterForm,
@@ -19,9 +20,13 @@ def register_view(request):
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password1")
 
+        group = Group.objects.get(name='customer')
+
         # form.save() ---> It's only for ModelForm
+        # Create user and add to group
         try:
             user = User.objects.create_user(username, email, password)
+            group.user_set.add(user)
         except:
             user = None
         if user is not None:
