@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model, authenticate, logout
-from django.http import HttpResponse
 from django.contrib.auth.models import Group
 
 from .forms import (
@@ -34,7 +33,8 @@ def register_view(request):
             login(request, user)
             return redirect('products:homepage')
         else:
-            return HttpResponse("Registration failed ...")
+            message = "Registration failed ..."
+            return render(request, "accounts/error_page.html", {"message": message})
     return render(request, "accounts/register_page.html", {"form": form})
 
 
@@ -48,7 +48,8 @@ def login_view(request):
             login(request, user)
             return redirect('products:homepage')
         else:
-            return HttpResponse("Login failed ...")
+            message = "Login failed ..."
+            return render(request, "accounts/error_page.html", {"message": message})
     return render(request, "accounts/login_page.html", {"form": form})
 
 
