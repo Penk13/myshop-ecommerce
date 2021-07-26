@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, get_user_model
+from django.contrib.auth import login, get_user_model, authenticate, logout
 from django.http import HttpResponse
 from django.contrib.auth.models import Group
 
@@ -30,8 +30,9 @@ def register_view(request):
         except:
             user = None
         if user is not None:
+            # TODO try authenticate()
             login(request, user)
-            return redirect('accounts:login-view')
+            return redirect('products:homepage')
         else:
             return HttpResponse("Registration failed ...")
     return render(request, "accounts/register_page.html", {"form": form})
@@ -40,6 +41,17 @@ def register_view(request):
 def login_view(request):
     form = LoginForm(request.POST or None)
     if form.is_valid():
-        # TODO
-        print("LOGIN SUCCESSFUL")
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('products:homepage')
+        else:
+            return HttpResponse("Login failed ...")
     return render(request, "accounts/login_page.html", {"form": form})
+
+
+def logout(request):
+    logout(request)
+    return redirect("accounts:login")
