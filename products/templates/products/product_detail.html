@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>{{ product.name }}</p>
-<p>{{ product.description }}</p>
-<p>{{ product.price }}</p>
-<p>{{ product.category }}</p>
+<p>Product : {{ product.name }}</p>
+<p>Description : {{ product.description }}</p>
+<p>Price : {{ product.price }}</p>
+<!-- TODO show category -->
+<p>Category : {{ product.category }}</p>
+
+<a href="{% url 'orders:create' product.id %}">Create Order</a>
 {% endblock content %}

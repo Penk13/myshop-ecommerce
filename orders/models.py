@@ -1,7 +1,7 @@
 from django.db import models
+from django.conf import settings
 
 from products.models import Product
-from accounts.models import Profile
 
 STATUS = (
     ("CREATED", "Created"),
@@ -11,10 +11,9 @@ STATUS = (
 
 
 class Order(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
-    products = models.ManyToManyField(Product)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    products = models.OneToOneField(Product, on_delete=models.CASCADE, default=1)
 
-    quantity = models.IntegerField(default=0)
     address = models.CharField(max_length=80)
     total_price = models.DecimalField(max_digits=12, decimal_places=2)
     status = models.CharField(max_length=20, choices=STATUS, default="CREATED")

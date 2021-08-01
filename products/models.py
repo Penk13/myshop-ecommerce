@@ -1,6 +1,5 @@
 from django.db import models
-
-# from orders.models import Order
+from django.urls import reverse
 
 
 class Product(models.Model):
@@ -15,6 +14,9 @@ class Product(models.Model):
     # Show product name on admin page
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("products:detail", kwargs={"pk": self.pk})
 
 
 class Category(models.Model):

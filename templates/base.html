@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>PenkShop</h1>
+        {% if user.is_authenticated %}
+            <h2>Welcome {{ user }}</h2>
+        {% endif %}
+    </header>
+
+    <nav>
+        {% for category in category_list %}
+            <a href="#">{{ category }}</a>
+        {% endfor %}
+    </nav>
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>
