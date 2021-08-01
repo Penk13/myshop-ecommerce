@@ -12,7 +12,7 @@ STATUS = (
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
-    products = models.OneToOneField(Product, on_delete=models.CASCADE, default=1)
+    products = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     address = models.CharField(max_length=80)
     total_price = models.DecimalField(max_digits=12, decimal_places=2)
