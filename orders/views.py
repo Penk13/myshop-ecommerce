@@ -18,7 +18,7 @@ def create_order(request, *args, **kwargs):
             products=products,
             address=address,
             total_price=total_price)
-        return redirect('homepage')
+        return redirect('orders:list')
     context = {
         "form": form,
         "product": product,
