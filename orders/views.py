@@ -28,3 +28,8 @@ def create_order(request, *args, **kwargs):
 
 def delete_order(request):
     pass
+
+
+def order_list(request):
+    order_list = Order.objects.filter(user=request.user)
+    return render(request, "orders/order_list.html", {"order_list": order_list})
