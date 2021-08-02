@@ -12,12 +12,13 @@ def create_order(request, *args, **kwargs):
         user = request.user
         products = product
         address = form.cleaned_data.get('address')
-        total_price = product.price
+        quantity = form.cleaned_data.get('quantity')
         Order.objects.create(
             user=user,
             products=products,
             address=address,
-            total_price=total_price)
+            quantity=quantity,
+            total_price=quantity*product.price)
         return redirect('orders:list')
     context = {
         "form": form,

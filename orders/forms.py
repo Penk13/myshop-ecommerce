@@ -1,7 +1,5 @@
 from django import forms
 
-from .models import Order
-
 
 class CreateOrderForm(forms.Form):
 
@@ -14,6 +12,7 @@ class CreateOrderForm(forms.Form):
     #     self.fields['total_price'].initial = kwargs['instance'].price
 
     address = forms.CharField()
+    quantity = forms.IntegerField()
 
     # class Meta:
     #     model = Order

@@ -15,6 +15,7 @@ class Order(models.Model):
     products = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     address = models.CharField(max_length=80)
+    quantity = models.IntegerField(default=0)
     total_price = models.DecimalField(max_digits=12, decimal_places=2)
     status = models.CharField(max_length=20, choices=STATUS, default="CREATED")
     date_created = models.DateField(auto_now_add=True)
