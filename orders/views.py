@@ -27,10 +27,19 @@ def create_order(request, *args, **kwargs):
     return render(request, "orders/create_order.html", context)
 
 
-def delete_order(request):
-    pass
+def delete_order(request, *args, **kwargs):
+    order = Order.objects.get(pk=kwargs['pk'])
+    if request.method == "POST":
+        order.delete()
+        return redirect('orders:list')
+    return render(request, "orders/delete_order.html", {"order": order})
 
 
 def order_list(request):
     order_list = Order.objects.filter(user=request.user)
     return render(request, "orders/order_list.html", {"order_list": order_list})
+
+
+def order_detail(request, *args, **kwargs):
+    order = Order.objects.get(pk=kwargs['pk'])
+    return render(request, "orders/order_detail.html", {"order": order})

@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 from products.models import Product
 
@@ -23,3 +24,6 @@ class Order(models.Model):
     # Show order id on admin page
     def __str__(self):
         return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse("orders:detail", kwargs={"pk": self.pk})
