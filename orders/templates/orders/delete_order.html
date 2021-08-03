@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        Are you sure you want to cancel this order ?
+        <p> Order ID : {{ order.id }} </p>
+        <p> Product : {{ order.products }}</p>
+        <p> Quantity : {{ order.quantity }} </p>
+        <input type="submit" value="Yes">
+    </form>
+{% endblock content %}

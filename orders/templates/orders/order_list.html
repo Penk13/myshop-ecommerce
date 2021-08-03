@@ -2,13 +2,8 @@
 
 {% block content %}
     {% for order in order_list %}
-        <p>Order ID : {{ order.id }}</p>
-        <p>Product : {{ order.products }}</p>
-        <p>Quantity : {{ order.quantity }}</p>
-        <p>Total Price : {{ order.total_price }}</p>
+        <a href="{{ order.get_absolute_url }}"><p>Order ID : {{ order.id }}</p></a>
         <p>Status : {{ order.status }}</p>
-        <p>Date : {{ order.date_created }}</p>
-        <p>Address : {{ order.address }}</p>
         <p>============================================</p>
     {% endfor %}
 {% endblock content %}
