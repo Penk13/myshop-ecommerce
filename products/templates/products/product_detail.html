@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>Product : {{ product.name }}</p>
-<p>Description : {{ product.description }}</p>
-<p>Price : {{ product.price }}</p>
-<!-- TODO show category -->
-<p>Category : {{ product.category }}</p>
+    <img src="{{ product.image.url }}" alt="">
+    <p>Product : {{ product.name }}</p>
+    <p>Description : {{ product.description }}</p>
+    <p>Price : {{ product.price }}</p>
+    <!-- TODO show category -->
+    <p>Category : {{ product.category }}</p>
 
-<a href="{% url 'orders:create' product.id %}">Create Order</a>
+    <a href="{% url 'orders:create' product.id %}">Create Order</a>
 {% endblock content %}

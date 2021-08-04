@@ -126,6 +126,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Where else should django look?
+STATICFILES_DIRS = [
+    BASE_DIR / 'staticfiles'
+    ]
+
+# python manage.py collectstatic ---> Collect all static files into one place
+# AWS S3 + Cloudfront, Google Cloud Storage
+STATIC_ROOT = BASE_DIR / 'cdn_test' / 'static'
+
+MEDIA_URL = '/media/'
+
+# Any upload field by default
+MEDIA_ROOT = BASE_DIR / 'cdn_test' / 'media'
+
+if DEBUG:
+    STATIC_ROOT.mkdir(parents=True, exist_ok=True)
+    MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

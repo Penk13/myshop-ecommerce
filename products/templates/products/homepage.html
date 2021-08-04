@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <ul>
-    {% for product in product_list %}
-        <li><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></li>
-    {% endfor %}
-    </ul>
+    <div class="product-image">
+        {% for product in product_list %}
+            <a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}"></a>
+            <p>{{ product.name }}</p>   
+            <p>{{ product.price }}</p>
+        {% endfor %}
+    </div>
 {% endblock content %}
