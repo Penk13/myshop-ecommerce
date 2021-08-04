@@ -10,6 +10,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2)
     date_created = models.DateField(auto_now_add=True)
     stock = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='products/')  # automatically upload to MEDIA_ROOT/products/
 
     # Show product name on admin page
     def __str__(self):
