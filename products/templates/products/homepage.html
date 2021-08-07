@@ -3,15 +3,15 @@
 {% block content %}
     <div class="row">
         {% for product in product_list %}
-        <div class="col-2">
+        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-6">
             <!-- <div class="col-2"> -->
                 <!-- <div class="product-image">
                     <a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}"></a>
                     <p>{{ product.name }}</p>   
                     <p>{{ product.price }}</p>
                 </div> -->
-            <div class="card">
-                <img src="{{ product.image.url }}" class="card-img-top mx-auto" style="height: 200px; width: 200px;">
+            <div class="card mt-5">
+                <img src="{{ product.image.url }}" class="card-img-top mx-auto mt-5" style="height: 200px; width: 200px;">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p>Rp.{{ product.price|intcomma }}</p>

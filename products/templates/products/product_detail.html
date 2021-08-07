@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
+{% load humanize %}  <!-- Formatting product price (ex: 12,300) -->
 
 {% block content %}
-    <img src="{{ product.image.url }}" alt="">
-    <p>Product : {{ product.name }}</p>
-    <p>Description : {{ product.description }}</p>
-    <p>Price : {{ product.price }}</p>
-    <!-- TODO show category -->
-    <p>Category : {{ product.category }}</p>
-
-    <a href="{% url 'orders:create' product.id %}">Create Order</a>
+<div class="row">
+    <div class="d-flex justify-content-center col-xl-5 col-lg-12 p-5">
+        <img src="{{ product.image.url }}" style="width: 400px; height: 400px; border: 2px solid red;">
+    </div>
+    <div class="col-xl-7 col-lg-12 p-5">
+        <h2>{{ product.name }}</h2>
+        <h3>Rp.{{ product.price|intcomma }}</h3>
+        <p>Description : {{ product.description }}</p>
+        {% for category in product.category.all %}
+            <span class="badge bg-info">{{ category }}</span>
+        {% endfor %}
+        <br><br>
+        <a href="{% url 'orders:create' product.id %}" class="btn btn-primary">Create Order</a>
+    </div>
+</div>
 {% endblock content %}
