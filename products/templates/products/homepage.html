@@ -11,9 +11,9 @@
                     <p>{{ product.name }}</p>   
                     <p>{{ product.price }}</p>
                 </div> -->
-            <div class="card mt-5">
+            <div class="card mt-3 bg-dark">
                 <img src="{{ product.image.url }}" class="card-img-top mx-auto mt-5" style="height: 200px; width: 200px;">
-                <div class="card-body">
+                <div class="card-body text-light">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p>${{ product.price|intcomma }}</p>
                     <a class="btn btn-primary" href="{{ product.get_absolute_url }}">View Details</a>
