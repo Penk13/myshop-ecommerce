@@ -14,7 +14,7 @@
             <span class="badge bg-info">{{ category }}</span>
         {% endfor %}
         <br><br>
-        <a href="{% url 'orders:create' product.id %}" class="btn btn-primary">Create Order</a>
+        <a class="btn btn-primary" href="{% url 'orders:create' product.id %}">Create Order</a>
     </div>
 </div>
 {% endblock content %}
