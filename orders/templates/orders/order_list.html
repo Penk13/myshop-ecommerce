@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for order in order_list %}
-        <a href="{{ order.get_absolute_url }}"><p>Order ID : {{ order.id }}</p></a>
-        <p>Status : {{ order.status }}</p>
-        <p>============================================</p>
-    {% endfor %}
+<ul class="list-group">
+{% for order in order_list %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold fs-3"><a href="{{ order.get_absolute_url }}">Order ID : {{ order.id }}</a></div>
+            <div class="d-flex my-2">
+                <h5 class="fw-bold">{{ order.products }}</h5>
+                <span class="badge bg-info mx-2 " style="font-size: 1.1rem;">{{ order.quantity }} pcs</span>
+                <span class="badge bg-success mx-2" style="font-size: 1.1rem;">{{ order.status }}</span>
+            </div>
+        </div>
+    </li>
+{% endfor %}
+</ul>
 {% endblock content %}
