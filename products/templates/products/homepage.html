@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}  <!-- Formatting product price (ex: 12,300) -->
+
 {% block content %}
     <div class="row">
         {% for product in product_list %}
@@ -14,7 +15,7 @@
                 <img src="{{ product.image.url }}" class="card-img-top mx-auto mt-5" style="height: 200px; width: 200px;">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
-                    <p>Rp.{{ product.price|intcomma }}</p>
+                    <p>${{ product.price|intcomma }}</p>
                     <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View Details</a>
                 </div>
             </div>

@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+{% load humanize %}  <!-- Formatting product price (ex: 12,300) -->
 
 {% block content %}
-    <img src="{{ product.image.url }}" alt="">
-    <p>Product : {{ product.name }}</p>
-    <p>Price : {{ product.price }}</p>
-
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Buy">
-    </form>
+<div class="row align-items-center">
+    <div class="col align-self-center">
+        <h2>{{ product.name }}</h2>
+        <h3>${{ product.price|intcomma }}</h3>
+        <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" value="Buy">
+        </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

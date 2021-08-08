@@ -8,7 +8,7 @@
     </div>
     <div class="col-xl-7 col-lg-12 p-5">
         <h2>{{ product.name }}</h2>
-        <h3>Rp.{{ product.price|intcomma }}</h3>
+        <h3>${{ product.price|intcomma }}</h3>
         <p>Description : {{ product.description }}</p>
         {% for category in product.category.all %}
             <span class="badge bg-info">{{ category }}</span>
