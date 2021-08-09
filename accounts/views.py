@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, get_user_model, logout, authenticate
 from django.contrib.auth.models import Group
 
+from .models import Profile
 from .forms import (
     RegisterForm,
     LoginForm,
@@ -24,6 +25,7 @@ def register_view(request):
         # Create user and add to group
         user = User.objects.create_user(username, email, password)
         group.user_set.add(user)
+        Profile.objects.create(user=user)
 
         login(request, user)
         return redirect("homepage")
