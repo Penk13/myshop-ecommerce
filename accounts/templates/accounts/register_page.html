@@ -1,9 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Register">
-    </form>
+    <div class="card">
+        <div class="row justify-content-center g-2 m-5">
+          <div class="col-lg-3 text-center">
+            <img src="{% static 'img/user.png' %}" style="height: 250px; width: 250px;">
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Register</h4>
+                <div>
+                    <form method="POST">
+                    {% csrf_token %}
+                    <div class="my-3"> {{ form.username }} </div>
+                    <div class="my-3"> {{ form.email }} </div>
+                    <div class="my-3"> {{ form.password1 }} </div>
+                    <div class="my-3"> {{ form.password2 }} </div>
+                    <input class="btn btn-primary mb-2" type="submit" value="Register">
+                    </form>
+                </div>
+              <p class="card-text"><small class="text-muted">Already have an account?</small>
+              <a href="{% url 'accounts:login' %}">Login here</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
 {% endblock content %}

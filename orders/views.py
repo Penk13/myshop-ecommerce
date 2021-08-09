@@ -30,7 +30,6 @@ def create_order(request, *args, **kwargs):
 def delete_order(request, *args, **kwargs):
     Order.objects.get(pk=kwargs['pk']).delete()
     return redirect('orders:list')
-    return render(request)
 
 
 def order_list(request):

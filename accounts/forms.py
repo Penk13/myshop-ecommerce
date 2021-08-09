@@ -7,10 +7,10 @@ User = get_user_model()
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField()
-    email = forms.EmailField(widget=forms.EmailInput)
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Username"}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': "Email"}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': "Password"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': "Confirm Password"}))
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
@@ -38,8 +38,8 @@ class RegisterForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Username"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': "Password"}))
 
     def clean(self):
         username = self.cleaned_data.get("username")

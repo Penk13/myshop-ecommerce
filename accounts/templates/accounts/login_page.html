@@ -12,9 +12,10 @@
               <h4 class="card-title mb-4">Sign into your account</h4>
                 <form method="POST">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <input class="btn btn-primary mb-3" type="submit" value="Login">
-                </form>
+                <div class="my-3"> {{ form.username }} </div>
+                <div class="my-3"> {{ form.password }} </div>
+                <input class="btn btn-primary" type="submit" value="Login">
+              </div>
               <p class="card-text"><small class="text-muted">Don't have an account?</small>
               <a href="{% url 'accounts:register' %}">Register here</a></p>
             </div>
