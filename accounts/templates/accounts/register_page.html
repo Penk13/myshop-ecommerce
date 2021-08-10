@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="card">
-        <div class="row justify-content-center g-2 m-5">
+        <div class="row justify-content-evenly align-items-center g-2 m-5">
           <div class="col-lg-3 text-center">
             <img src="{% static 'img/user.png' %}" style="height: 250px; width: 250px;">
           </div>
@@ -11,12 +11,12 @@
             <div class="card-body">
               <h4 class="card-title mb-4">Register</h4>
                 <div>
-                    <form method="POST">
+                    <form method="POST" class="row g-3 needs-validation">
                     {% csrf_token %}
-                    <div class="my-3"> {{ form.username }} </div>
-                    <div class="my-3"> {{ form.email }} </div>
-                    <div class="my-3"> {{ form.password1 }} </div>
-                    <div class="my-3"> {{ form.password2 }} </div>
+                    <input type="text" name="username" class="form-control" placeholder="Username" required>
+                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                    <input type="password" name="password1" class="form-control" placeholder="Password" required>
+                    <input type="password" name="password2" class="form-control" placeholder="Confirm Password" required>
                     <input class="btn btn-primary mb-2" type="submit" value="Register">
                     </form>
                 </div>
