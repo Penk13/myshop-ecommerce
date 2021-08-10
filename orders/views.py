@@ -28,11 +28,8 @@ def create_order(request, *args, **kwargs):
 
 
 def delete_order(request, *args, **kwargs):
-    order = Order.objects.get(pk=kwargs['pk'])
-    if request.method == "POST":
-        order.delete()
-        return redirect('orders:list')
-    return render(request, "orders/delete_order.html", {"order": order})
+    Order.objects.get(pk=kwargs['pk']).delete()
+    return redirect('orders:list')
 
 
 def order_list(request):

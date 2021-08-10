@@ -15,8 +15,28 @@
     <b>Total Price : ${{ order.total_price|intcomma }} </b></pre></p>
         </div>
         <div class="d-grid gap-2 d-sm-block p-3 ms-3">
-            <a class="btn btn-danger" href="{% url 'orders:delete' order.id %}">Cancel Order</a>
-            <a class="btn btn-success" href="#">Complete</a>
+            <!-- Button trigger modal -->
+            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancel Order</a>
+            <a class="btn btn-success mx-2" href="#">Complete</a>
+        </div>
+    </div>
+
+    <!-- Modal to call delete order function -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cancel Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to cancel this order?
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" href="{% url 'orders:delete' order.id %}">Cancel Order</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
         </div>
     </div>
 {% endblock content %}
