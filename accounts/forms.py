@@ -1,7 +1,10 @@
 from django import forms
+from django.forms import Textarea, TextInput, DateInput, FileInput
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 
+
+from .models import Profile
 
 User = get_user_model()
 
@@ -48,3 +51,25 @@ class LoginForm(forms.Form):
         user = authenticate(username=username, password=password)
         if not user:
             raise forms.ValidationError("This is an invalid user.")
+
+
+class ProfileForm(forms.ModelForm):
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     # self.fields['bio'].widget.attrs.update({'class': 'form-control my-3', 'placeholder': 'Bio'})
+
+    class Meta:
+        model = Profile
+        fields = ['bio', 'address', 'birth_date', 'profile_pic']
+        widgets = {
+            'bio': Textarea(attrs={'class': 'form-control my-3', 'rows': 5, 'placeholder': 'Bio'}),
+            'address': TextInput(attrs={'class': 'form-control my-3', 'placeholder': 'Address'}),
+            'birth_date': DateInput(attrs={'class': 'form-control my-3', 'type': 'date'}),
+            'profile_pic': FileInput(attrs={'class': 'form-control my-3'}),
+        }
+        labels = {
+            'bio': '',
+            'address': '',
+            'birth_date': '',
+            'profile_pic': '',
+        }
