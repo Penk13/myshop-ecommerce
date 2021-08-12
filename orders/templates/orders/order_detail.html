@@ -13,11 +13,12 @@
     Date        : {{ order.date_created }} <br>
     Address     : {{ order.address }} <br><br>
     <b>Total Price : ${{ order.total_price|intcomma }} </b></pre></p>
-        </div>
+        {% if order.status == "CREATED" %}
         <div class="d-grid gap-2 d-sm-block p-3 ms-3">
             <!-- Button trigger modal -->
             <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Cancel Order</a>
         </div>
+        {% endif %}
     </div>
 
     <!-- Modal to call delete order function -->
