@@ -70,14 +70,21 @@ class LoginForm(forms.Form):
 
 
 class ProfileForm(forms.ModelForm):
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['bio'].widget.attrs.update({'rows': 5, 'placeholder': 'Bio'})
+    #     self.fields['address'].widget.attrs.update({'placeholder': 'Address'})
+    #     self.fields['birth_date'].widget.attrs.update({'type': 'date'})
+    #     self.fields['profile_pic'].widget.attrs.update()
+
     class Meta:
         model = Profile
         fields = ['bio', 'address', 'birth_date', 'profile_pic']
         widgets = {
-            'bio': Textarea(attrs={'class': 'form-control my-3', 'rows': 5, 'placeholder': 'Bio'}),
-            'address': TextInput(attrs={'class': 'form-control my-3', 'placeholder': 'Address'}),
-            'birth_date': DateInput(attrs={'class': 'form-control my-3', 'type': 'date'}),
-            'profile_pic': FileInput(attrs={'class': 'form-control my-3'}),
+            'bio': Textarea(attrs={'rows': 5, 'placeholder': 'Bio'}),
+            'address': TextInput(attrs={'placeholder': 'Address'}),
+            'birth_date': DateInput(attrs={'type': 'date'}),
+            'profile_pic': FileInput(),
         }
         labels = {
             'bio': '',
