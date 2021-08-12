@@ -3,19 +3,28 @@ from django.forms import Textarea, TextInput, DateInput, FileInput
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column
-
 from .models import Profile
 
 User = get_user_model()
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField()
-    email = forms.EmailField()
-    password1 = forms.CharField()
-    password2 = forms.CharField()
+    username = forms.CharField(
+        label="",
+        widget=forms.TextInput(attrs={'placeholder': 'Username'}),
+    )
+    email = forms.EmailField(
+        label="",
+        widget=forms.TextInput(attrs={'placeholder': 'Email', 'type': 'email'}),
+    )
+    password1 = forms.CharField(
+        label="",
+        widget=forms.TextInput(attrs={'placeholder': 'Password', 'type': 'password'}),
+    )
+    password2 = forms.CharField(
+        label="",
+        widget=forms.TextInput(attrs={'placeholder': 'Confirm Password', 'type': 'password'}),
+    )
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
@@ -39,7 +48,6 @@ class RegisterForm(forms.Form):
         # Check if password is same as confirm password
         if password1 != password2:
             raise forms.ValidationError("Your password and confirmation password do not match. Please try again.")
-        # clean(self) function doesnt need return
 
 
 class LoginForm(forms.Form):
@@ -62,10 +70,6 @@ class LoginForm(forms.Form):
 
 
 class ProfileForm(forms.ModelForm):
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     # self.fields['bio'].widget.attrs.update({'class': 'form-control my-3', 'placeholder': 'Bio'})
-
     class Meta:
         model = Profile
         fields = ['bio', 'address', 'birth_date', 'profile_pic']
@@ -81,3 +85,6 @@ class ProfileForm(forms.ModelForm):
             'birth_date': '',
             'profile_pic': '',
         }
+
+# Notes: 
+# clean(self) function doesnt need return

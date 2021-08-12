@@ -12,7 +12,7 @@
             <div class="card-body">
               <h4 class="card-title mb-4">Sign into your account</h4>
                 <form method="POST" class="row g-3">
-                {% csrf_token %}
+                  {% csrf_token %}
                   {{ form|crispy }}
                   <input class="btn btn-primary" type="submit" value="Login">
                 </form>
