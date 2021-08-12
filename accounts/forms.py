@@ -3,6 +3,8 @@ from django.forms import Textarea, TextInput, DateInput, FileInput
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column
 
 from .models import Profile
 
@@ -41,8 +43,14 @@ class RegisterForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField()
+    username = forms.CharField(
+        label="",
+        widget=forms.TextInput(attrs={'placeholder': 'Username'}),
+    )
+    password = forms.CharField(
+        label="",
+        widget=forms.TextInput(attrs={'placeholder': 'Password', 'type': 'password'}),
+    )
 
     def clean(self):
         username = self.cleaned_data.get("username")

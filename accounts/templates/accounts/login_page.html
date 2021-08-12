@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div class="card">
@@ -10,11 +11,11 @@
           <div class="col-lg-6 text-center">
             <div class="card-body">
               <h4 class="card-title mb-4">Sign into your account</h4>
-                <form method="POST" class="row g-3 needs-validation">
+                <form method="POST" class="row g-3">
                 {% csrf_token %}
-                  <input type="text" name="username" class="form-control" placeholder="Username" required>
-                  <input type="password" name="password" class="form-control" placeholder="Password" required>
+                  {{ form|crispy }}
                   <input class="btn btn-primary" type="submit" value="Login">
+                </form>
               <p class="card-text"><small class="text-muted">Don't have an account?</small>
               <a href="{% url 'accounts:register' %}">Register here</a></p>
             </div>
