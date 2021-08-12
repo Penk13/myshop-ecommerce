@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',  # Formatting product price (ex: 12,300)
 
+    # third party apps
+    'crispy_forms',
+    'crispy_bootstrap5',
+
     'products.apps.ProductsConfig',
     'accounts.apps.AccountsConfig',
     'orders.apps.OrdersConfig',
@@ -149,3 +153,8 @@ if DEBUG:
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Use crispy forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

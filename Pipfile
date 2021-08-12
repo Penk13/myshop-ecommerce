@@ -9,6 +9,8 @@ verify_ssl = true
 django = "==3.2"
 flake8 = "*"
 pillow = "*"
+django-crispy-forms = "*"
+crispy-bootstrap5 = "*"
 
 [requires]
 python_version = "3.9"

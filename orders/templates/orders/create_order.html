@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}  <!-- Formatting product price (ex: 12,300) -->
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="row align-items-center">
@@ -9,7 +10,7 @@
         <div class="form-group">
         <form method="POST">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <input class="btn btn-primary" type="submit" value="Buy">
         </form>
         </div>
