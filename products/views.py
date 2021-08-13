@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Product, Category
 
@@ -19,6 +19,6 @@ def homepage(request):
 
 def product_detail(request, pk):
     # Got one object which id is depends on url
-    product = Product.objects.get(id=pk)
+    product = get_object_or_404(Product, id=pk)
     context = {'product': product}
     return render(request, 'products/product_detail.html', context)

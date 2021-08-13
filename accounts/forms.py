@@ -70,6 +70,7 @@ class LoginForm(forms.Form):
 
 
 class ProfileForm(forms.ModelForm):
+    # Method 1
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
     #     self.fields['bio'].widget.attrs.update({'rows': 5, 'placeholder': 'Bio'})
@@ -77,6 +78,26 @@ class ProfileForm(forms.ModelForm):
     #     self.fields['birth_date'].widget.attrs.update({'type': 'date'})
     #     self.fields['profile_pic'].widget.attrs.update()
 
+    # Method 2
+    # bio = forms.CharField(
+    #     label="",
+    #     widget=forms.Textarea(attrs={'rows': 5, 'placeholder': 'Bio'}),
+    #     required=False,
+    # )
+    # address = forms.CharField(
+    #     label="",
+    #     widget=forms.TextInput(attrs={'placeholder': 'Address'}),
+    # )
+    # birth_date = forms.DateField(
+    #     label="",
+    #     widget=forms.DateInput(attrs={'type': 'date'}),
+    # )
+    # profile_pic = forms.ImageField(
+    #     label="",
+    #     widget=forms.FileInput(),
+    # )
+
+    # Method 3
     class Meta:
         model = Profile
         fields = ['bio', 'address', 'birth_date', 'profile_pic']

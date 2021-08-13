@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .forms import CreateOrderForm
@@ -7,9 +7,9 @@ from .models import Order
 
 
 @login_required(login_url='accounts:login')
-def create_order(request, *args, **kwargs):
-    product = Product.objects.get(pk=kwargs['pk'])
-    form = CreateOrderForm(request.POST or None)
+def create_order(request, pk):
+    product = get_object_or_404(Product, id=pk)
+    form = CreateOrderForm(request.POST or None, products=product)
     if form.is_valid():
         user = request.user
         products = product
@@ -30,8 +30,9 @@ def create_order(request, *args, **kwargs):
 
 
 @login_required(login_url='accounts:login')
-def delete_order(request, *args, **kwargs):
-    Order.objects.get(pk=kwargs['pk']).delete()
+def delete_order(request, pk):
+    order = get_object_or_404(Order, id=pk)
+    order.delete()
     return redirect('orders:list')
 
 
@@ -42,6 +43,6 @@ def order_list(request):
 
 
 @login_required(login_url='accounts:login')
-def order_detail(request, *args, **kwargs):
-    order = Order.objects.get(pk=kwargs['pk'])
+def order_detail(request, pk):
+    order = get_object_or_404(Order, id=pk)
     return render(request, "orders/order_detail.html", {"order": order})
