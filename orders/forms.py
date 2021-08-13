@@ -40,6 +40,8 @@ class CreateOrderForm(forms.Form):
             raise forms.ValidationError("Please enter the correct number")
         if not product.available():
             raise forms.ValidationError("Sorry this item is out of stock, please try again later...")
+        if quantity > product.stock:
+            raise forms.ValidationError("Sorry this item only has " + str(product.stock) + " pieces left")
         if product.price * quantity >= 9999999999:
             raise forms.ValidationError("Sorry your order is very expensive, try to separate it into 2 or more orders. Thanks")
         return quantity

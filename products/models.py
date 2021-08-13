@@ -25,6 +25,10 @@ class Product(models.Model):
     def available(self):
         return self.stock > 0
 
+    def reduce_stock(self, quantity):
+        self.stock -= quantity
+        return self.stock
+
     # Show product name on admin page
     def __str__(self):
         return self.name

@@ -20,7 +20,10 @@ def create_order(request, pk):
             products=products,
             address=address,
             quantity=quantity,
-            total_price=quantity*product.price)
+            total_price=quantity*product.price
+        )
+        product.reduce_stock(quantity)
+        product.save()
         return redirect('orders:list')
     context = {
         "form": form,
