@@ -11,14 +11,16 @@ def navbar(request):
 
 
 def homepage(request):
-    # Get all object from Product Table
-    product_list = Product.objects.all()
+    product_list = []
+    # Get all available product
+    for product in Product.objects.all():
+        if product.available():
+            product_list.append(product)
     context = {'product_list': product_list}
     return render(request, 'products/homepage.html', context)
 
 
 def product_detail(request, pk):
-    # Got one object which id is depends on url
     product = get_object_or_404(Product, id=pk)
     context = {'product': product}
     return render(request, 'products/product_detail.html', context)
