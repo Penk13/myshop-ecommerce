@@ -6,7 +6,7 @@
 <div class="row align-items-center">
     <div class="col align-self-center p-3">
         <h2 class="fw-bold">{{ product.name }}</h2>
-        <h3>${{ product.price|intcomma }}</h3>
+        <h4><span class="badge bg-success">${{ product.price|intcomma }}</span></h4>
         <div class="form-group">
         <form method="POST">
             {% csrf_token %}
